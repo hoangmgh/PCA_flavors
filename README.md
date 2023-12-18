@@ -14,7 +14,8 @@ $$
 where the diagonal entries of $W$ stores the weights ($diag(W)=\vec{w}$) and their entries must sum to $1$. You can check that this is indeed an inner product by checking its properties. As a result, the weighted norm simply follows:
 
 $$
-    |x|_W = \langle x,x \rangle = (x^T W x) = \sum{i=1}^n w_i x_i^2
+    |x| = \langle x,x \rangle = (x^T W x) \\
+          =  \sum_{i=1}^n w_i x_i^2
 $$
 
 Then, we  can define a weighted mean of a vector $ \vec{x} \in \mathbb{R^n} $. You can think of a mean as a dot-product as well!
