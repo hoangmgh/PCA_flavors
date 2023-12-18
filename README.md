@@ -6,9 +6,9 @@ The most important observation they made is the stark difference between the num
 To dive into this, I would like to explain the concept of weighted PCA, first by formalizing  the idea of weighted expectation, weighted variance, and eventually weighted covariance matrix. While there are various implementation of weighted PCA out there, this is perhaps the easiest implementation, most intuitive, and also well generalized from the original definition of PCA. 
  First, we can define a weighted inner-product in the Euclidean space: 
 
-\begin{equation}
+$$
     \langle x,y \rangle_W = x^T W y  
-\end{equation}
+$$
 
 where the diagonal entries of $W$ stores the weights ($diag(W)=\vec{w}$) and their entries must sum to $1$. You can check that this is indeed an inner product by checking its properties. As a result, the weighted norm simply follows:
 
@@ -18,9 +18,9 @@ where the diagonal entries of $W$ stores the weights ($diag(W)=\vec{w}$) and the
 
 Then, we  can define a weighted mean of a vector $ \vec{x} \in \mathbb{R^n} $. You can think of a mean as a dot-product as well!
 
-\begin{equation}
+$$
     \mu_x^W  = \vec{x}^T \cdot \vec{w}  = \vec{x}^T \cdot W \cdot  \vec{1} = \langle x, \vec{1} \rangle_W 
-\end{equation}
+$$
 
 and $diag(W)=w$. You can always replace the weight vector with the diagonal matrix $W$ of the same size!
 In the unweighted case, we simply have all entries of $w$ to be $\frac{1}{n}$.
@@ -37,16 +37,16 @@ center each gene at the weighted mean and inversely scale them by the weighted s
  (so that later on $AA^T$  actually sample correlation matrix):
 
 The covariance matrix is, in fact, no longer $AA^T$ but $AWA^T$, due to our definition of the covariance above. The weighted PCA from here can be rewritten as diagonalizing (eigendecomposition):
-\begin{equation}
+$$
 AWA^T = AW^{1/2} W^{1/2}A^T = AW^{1/2} (AW^{1/2})^T
-\end{equation}
+$$
 Here $W$ is diagonal so $W^{1/2}$ is the same as its transpose.
 Therefore, diagonalizing $AWA^T$ is equivalent  to running SVD for  $AW^{1/2}$. We can then write $AW^{1/2}$ as
-\begin{equation}
+$$
 AW^{1/2}=USV
-\end{equation}
+$$
 and hence
-\begin{equation}
+$$
 A = USVW^{1/2}
-\end{equation}
+$$
 Under the new orthogonal basis spanned by $U$, the coordinates are   now given by  $SVW^{1/2}$ 
