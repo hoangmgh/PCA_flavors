@@ -15,7 +15,7 @@ where the diagonal entries of $W$ stores the weights ($diag(W)=\vec{w}$) and the
 
 $$
     |x| = \langle x,x \rangle = (x^T W x) \\
-          =  \sum_{i=1}^n w_i x_i^2
+          =  \sqrt{\sum_{i=1}^n w_i x_i^2}
 $$
 
 Then, we  can define a weighted mean of a vector $ \vec{x} \in \mathbb{R^n} $. You can think of a mean as a dot-product as well!
