@@ -1,4 +1,5 @@
-**1. Introduction**
+*1. Introduction*
+
 In [Cross-tissue, single-cell stromal atlas identifies shared pathological fibroblast phenotypes in four chronic inflammatory diseases](https://doi.org/10.1016/j.medj.2022.05.002), 
 the authors use a technique called "weighted PCA", together with harmony, 
 to remove batch effect across a wide variety of diseases. 
@@ -50,3 +51,33 @@ $$
 A = USVW^{1/2}
 $$
 Under the new orthogonal basis spanned by $U$, the coordinates are   now given by  $SVW^{1/2}$ 
+
+
+*Usage*
+
+
+An ideal weights array would sum up to 1, and a cell's weight must be inversely proportional to its population 'size. 
+
+For example, if a Batch of anndata is stored in .obs.Batch_key, we can get the frequency by:
+```python
+freq= anndata.obs[Batch_key].value_counts().reset_index().rename({"index":Batch_key,Batch_key:"count"},axis=1)
+freq["count"]=freq["count"]/np.sum(freq["count"])
+freq=pd.merge(dt.obs[[Batch_key]],freq,how="left",on=Batch_key)
+``` 
+now we want the weights to be the inverse and normalizing these so they sum up to 1:
+```python
+w=1/freq["count"]
+w=w/np.sum(w)
+```
+This can make a nice helper function:
+
+```python
+def generate_weights(anndata,Batch_key):
+    assert Batch_key in anndata.obs.columns
+    freq= anndata.obs[Batch_key].value_counts().reset_index().rename({"index":Batch_key,Batch_key:"count"},axis=1)
+    freq["count"]=freq["count"]/np.sum(freq["count"])
+    freq=pd.merge(dt.obs[[Batch_key]],freq,how="left",on=Batch_key)
+    w=1/freq["count"]
+    w=w/np.sum(w)
+    return(w)
+```
