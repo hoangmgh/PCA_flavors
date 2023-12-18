@@ -12,10 +12,9 @@ $$
 
 where the diagonal entries of $W$ stores the weights ($diag(W)=\vec{w}$) and their entries must sum to $1$. You can check that this is indeed an inner product by checking its properties. As a result, the weighted norm simply follows:
 
-\begin{align}
+$$
     \|x\|_W = \langle x,x \rangle_W = (x^T W x)^{1/2} 
-\end{align}
-
+$$
 Then, we  can define a weighted mean of a vector $ \vec{x} \in \mathbb{R^n} $. You can think of a mean as a dot-product as well!
 
 $$
