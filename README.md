@@ -18,7 +18,7 @@ $$
           =  \sqrt{\sum_{i=1}^n w_i x_i^2}
 $$
 
-Then, we  can define a weighted mean of a vector $ \vec{x} \in \mathbb{R^n} $. You can think of a mean as a dot-product as well!
+Then, we  can define a weighted mean of a vector $\vec{x} \in \mathbb{R^n}$. You can think of a mean as a dot-product as well!
 
 $$
     \mu_x^W  = \vec{x}^T \cdot \vec{w}  = \vec{x}^T \cdot W \cdot  \vec{1} = \langle x, \vec{1} \rangle_W 
