@@ -1,4 +1,4 @@
-*1. Introduction*
+**1. Introduction**
 
 In [Cross-tissue, single-cell stromal atlas identifies shared pathological fibroblast phenotypes in four chronic inflammatory diseases](https://doi.org/10.1016/j.medj.2022.05.002), 
 the authors use a technique called "weighted PCA", together with harmony, 
@@ -53,7 +53,7 @@ $$
 Under the new orthogonal basis spanned by $U$, the coordinates are   now given by  $SVW^{1/2}$ 
 
 
-*Usage*
+**2.Usage**
 
 
 An ideal weights array would sum up to 1, and a cell's weight must be inversely proportional to its population 'size. 
