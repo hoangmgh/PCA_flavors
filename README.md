@@ -40,18 +40,17 @@ center each gene at the weighted mean and inversely scale them by the weighted s
  (so that later on $AA^T$  actually sample correlation matrix):
 
 The covariance matrix is, in fact, no longer $AA^T$ but $AWA^T$, due to our definition of the covariance above. The weighted PCA from here can be rewritten as diagonalizing (eigendecomposition):
-$$
-AWA^T = AW^{1/2} W^{1/2}A^T = AW^{1/2} (AW^{1/2})^T
-$$
+
+$$AWA^T = AW^{1/2} W^{1/2}A^T = AW^{1/2} (AW^{1/2})^T$$
+
 Here $W$ is diagonal so $W^{1/2}$ is the same as its transpose.
 Therefore, diagonalizing $AWA^T$ is equivalent  to running SVD for  $AW^{1/2}$. We can then write $AW^{1/2}$ as
-$$
-AW^{1/2}=USV
-$$
+
+$$AW^{1/2}=USV$$
+
 and hence
-$$
-A = USVW^{1/2}
-$$
+
+$$A = USVW^{1/2}$$
 Under the new orthogonal basis spanned by $U$, the coordinates are   now given by  $SVW^{1/2}$ 
 
 
