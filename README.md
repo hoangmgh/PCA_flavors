@@ -82,3 +82,8 @@ def generate_weights(anndata,Batch_key):
     w=w/np.sum(w)
     return(w)
 ```
+and so use can calculate a new w_PCA representation by running
+```python
+w=generate_weights(anndata,batch)
+anndata.obsm["X_wpca"]=weighted_pca(anndata,w,n_comp,corr=True)
+```
