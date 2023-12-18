@@ -25,9 +25,10 @@ and $diag(W)=w$. You can always replace the weight vector with the diagonal matr
 In the unweighted case, we simply have all entries of $w$ to be $\frac{1}{n}$.
 Now, we can define weighted covariance  of $x$ and $y$ as:
 
-\begin{align}
+$$
     Cov(x,y)_W = \langle x-\mu_x^W ,y-\mu_y^W \rangle_W  = (x-\mu_x^W)^T W (y-\mu_y^W)
-\end{align}
+$$
+
 In short, most of our measures, i.e. correlation, covariance, mean, variance, are replaced with the weighted version. I think it makes sense that this has to be built from the ground up using a different version of the dot-product.
 The weights for each observation can also be interpreted as corresponding to the frequency of each observation. In an imbalance situation, it is favorable to  incorporate this weight to reflect the frequency of different classes of observation. 
 
