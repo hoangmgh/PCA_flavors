@@ -1,4 +1,4 @@
-
+**1. Introduction**
 In [Cross-tissue, single-cell stromal atlas identifies shared pathological fibroblast phenotypes in four chronic inflammatory diseases](https://doi.org/10.1016/j.medj.2022.05.002), 
 the authors use a technique called "weighted PCA", together with harmony, 
 to remove batch effect across a wide variety of diseases. 
