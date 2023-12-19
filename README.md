@@ -4,7 +4,9 @@ In [Cross-tissue, single-cell stromal atlas identifies shared pathological fibro
 the authors use a technique called "weighted PCA", together with harmony, 
 to remove batch effect across a wide variety of diseases. 
 The most important observation they made is the stark difference between the number of cells between tissues. 
-I rewrote a python implementation using [https://github.com/immunogenomics/singlecellmethods].
+I rewrote a python implementation of an R version  https://github.com/immunogenomics/singlecellmethods. 
+
+The original code lacks a bit of an explanation, however.
 
 To dive into this, I would like to explain the concept of weighted PCA, first by formalizing  the idea of weighted expectation, weighted variance, and eventually weighted covariance matrix. While there are various implementation of weighted PCA out there, this is perhaps the easiest implementation, most intuitive, and also well generalized from the original definition of PCA. 
  First, we can define a weighted inner-product in the Euclidean space: 
