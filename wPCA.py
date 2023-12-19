@@ -4,7 +4,7 @@ import numpy as np
 import scanpy as sc
 def weighted_pca(anndata,weights,n_comps, corr=True,
                  max_value=10):
-   '''
+    '''
         This function calculate a weighted version of PCA as suggested in https://doi.org/10.1016/j.medj.2022.05.002
         by Korsunsky et al
         input:
@@ -12,9 +12,6 @@ def weighted_pca(anndata,weights,n_comps, corr=True,
                 n_comps: number of components for wPCA
 
     '''
-    from scipy.sparse.linalg import svds
-    from scipy.sparse import csr_matrix
-    import numpy as np
     assert anndata.shape[0] == weights.shape[0]
     if max_value is not None:
         assert max_value > 0
@@ -32,7 +29,7 @@ def weighted_pca(anndata,weights,n_comps, corr=True,
         """
         return np.sqrt(vars(a, axis))
 
-    wanndataX=anndata.X.copy()
+    wanndataX=scipy.sparse.csc_matrix(anndata.X.copy())
 
     sklearn.utils.sparsefuncs.inplace_row_scale(wanndataX, weights)
     mu=wanndataX.mean(axis=0)
@@ -44,7 +41,7 @@ def weighted_pca(anndata,weights,n_comps, corr=True,
     sklearn.utils.sparsefuncs.inplace_column_scale(wanndataX, sig)
 
     del mu,sig
-    if corr=True:
+    if corr==True:
         #####And then run scaling on this matrix one more time observation-wise:
         mu=wanndataX.mean(axis=1)
         print(mu.shape)
@@ -85,4 +82,4 @@ def generate_weights(anndata,Batch_key):
     freq=pd.merge(dt.obs[[Batch_key]],freq,how="left",on=Batch_key)
     w=1/freq["count"]
     w=w/np.sum(w)
-    return(w)
+    return(np.array(w))
