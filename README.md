@@ -76,7 +76,7 @@ def generate_weights(anndata,Batch_key):
     assert Batch_key in anndata.obs.columns
     freq= anndata.obs[Batch_key].value_counts()
     w=1/freq
-    w=w[anndata.obs[Batch_key]]/length(unique(anndata.obs[Batch_key]))
+    w=w[anndata.obs[Batch_key]]/len(unique(anndata.obs[Batch_key]))
     return(np.array(w))
 ```
 and so use can calculate a new w_PCA representation by running
