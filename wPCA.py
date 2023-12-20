@@ -10,6 +10,8 @@ def weighted_pca(anndata,weights,n_comps, corr=True,
         input:
                 anndata: a log10CPM normalized count matrix. This should not be scaled in any ways
                 n_comps: number of components for wPCA
+        output:
+          the V and U matrices from SVD
 
     '''
     assert anndata.shape[0] == weights.shape[0]
@@ -76,10 +78,13 @@ def weighted_pca(anndata,weights,n_comps, corr=True,
     return np.array(v.todense().T),np.array(u)
 
 def generate_weights(anndata,Batch_key):
+    '''input: 
+         anndata: an anndata object 
+         Batch_key: the Batch key in .obs
+       output:
+         weights with w.shape[0] ==anndata.obs.shape[0]
+    '''
     assert Batch_key in anndata.obs.columns
-    freq= anndata.obs[Batch_key].value_counts().reset_index().rename({"index":Batch_key,Batch_key:"count"},axis=1)
-    freq["count"]=freq["count"]/np.sum(freq["count"])
-    freq=pd.merge(dt.obs[[Batch_key]],freq,how="left",on=Batch_key)
-    w=1/freq["count"]
-    w=w/np.sum(w)
+    w= 1/anndata.obs[Batch_key].value_counts()
+    w=w[anndata.obs[Batch_key]]/len(np.unique(anndata.obs[Batch_key]))
     return(np.array(w))
